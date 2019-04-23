@@ -36,11 +36,18 @@ namespace dbot.CommandModules
                 }
                 else 
                 {
-                    await ReplyAsync(movie.ToString());
+                    if(!_nominationsService.IsNominated(movie.imdbID))
+                    {
+                        await ReplyAsync(movie.ToString());
 
-                    //if this isnt the right one, specify the year and change the nomination
-                    _nominationsService.AddNomination(Context.User, movie.Title, movie.imdbID);
-                    await ReplyAsync("Thanks for nominating!");
+                        //if this isnt the right one, specify the year and change the nomination
+                        _nominationsService.AddNomination(Context.User, movie.Title, movie.imdbID);
+                        await ReplyAsync("Thanks for nominating!");
+                    }
+                    else
+                    {
+                        await ReplyAsync($"{movie.Title} is already nominated!");
+                    }
                 }
             }
             else 
@@ -63,11 +70,18 @@ namespace dbot.CommandModules
                 }
                 else
                 {
-                    await ReplyAsync(movie.ToString());
+                    if(!_nominationsService.IsNominated(movie.imdbID))
+                    {
+                        await ReplyAsync(movie.ToString());
 
-                    //if this isnt the right one, specify the year and change the nomination obj
-                    _nominationsService.AddNomination(Context.User, movie.Title, movie.imdbID);
-                    await ReplyAsync("Thanks for nominating!");
+                        //if this isnt the right one, specify the year and change the nomination obj
+                        _nominationsService.AddNomination(Context.User, movie.Title, movie.imdbID);
+                        await ReplyAsync("Thanks for nominating!");
+                    }
+                    else
+                    {
+                        await ReplyAsync($"{movie.Title} is already nominated!");
+                    }
                 }
             }
             else 
@@ -90,11 +104,18 @@ namespace dbot.CommandModules
                 }
                 else
                 {
-                    await ReplyAsync(mov.ToString());
+                    if(!_nominationsService.IsNominated(mov.imdbID))
+                    {
+                        await ReplyAsync(mov.ToString());
 
-                    //if this isnt the right one, specify the year and change the nomination
-                    _nominationsService.AddNomination(Context.User, mov.Title, mov.imdbID);
-                    await ReplyAsync("Thanks for nominating!");
+                        //if this isnt the right one, specify the year and change the nomination
+                        _nominationsService.AddNomination(Context.User, mov.Title, mov.imdbID);
+                        await ReplyAsync("Thanks for nominating!");
+                    }
+                    else
+                    {
+                        await ReplyAsync($"{mov.Title} is already nominated!");
+                    }
                 }
             }
             else 
